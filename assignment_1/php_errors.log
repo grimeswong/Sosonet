@@ -1,0 +1,24 @@
+[16-Aug-2017 16:35:01 UTC] PHP Warning:  Uncaught ErrorException: require(/routes/web.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php:1
+Stack trace:
+#0 /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php(1): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/routes...', '/home/ubuntu/wo...', 1, Array)
+#1 /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php(1): require()
+#2 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(42): include('/home/ubuntu/wo...')
+#3 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ubuntu/wo...', Array)
+#4 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/View.php(137): Illuminate\View in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php on line 1
+[16-Aug-2017 16:35:01 UTC] PHP Fatal error:  Illuminate\View\Engines\PhpEngine::main(): Failed opening required '/routes/web.php' (include_path='.:/usr/share/php') in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php on line 1
+[16-Aug-2017 16:35:02 UTC] PHP Warning:  Uncaught ErrorException: require(/routes/web.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php:1
+Stack trace:
+#0 /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php(1): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/routes...', '/home/ubuntu/wo...', 1, Array)
+#1 /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php(1): require()
+#2 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(42): include('/home/ubuntu/wo...')
+#3 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ubuntu/wo...', Array)
+#4 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/View.php(137): Illuminate\View in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php on line 1
+[16-Aug-2017 16:35:02 UTC] PHP Fatal error:  Illuminate\View\Engines\PhpEngine::main(): Failed opening required '/routes/web.php' (include_path='.:/usr/share/php') in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php on line 1
+[16-Aug-2017 16:35:39 UTC] PHP Warning:  Uncaught ErrorException: require(/routes/web.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php:1
+Stack trace:
+#0 /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php(1): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/routes...', '/home/ubuntu/wo...', 1, Array)
+#1 /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php(1): require()
+#2 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(42): include('/home/ubuntu/wo...')
+#3 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ubuntu/wo...', Array)
+#4 /home/ubuntu/workspace/assignment_1/vendor/laravel/framework/src/Illuminate/View/View.php(137): Illuminate\View in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php on line 1
+[16-Aug-2017 16:35:39 UTC] PHP Fatal error:  Illuminate\View\Engines\PhpEngine::main(): Failed opening required '/routes/web.php' (include_path='.:/usr/share/php') in /home/ubuntu/workspace/assignment_1/storage/framework/views/332939e77f8a5cce66fce386735a938928b98088.php on line 1

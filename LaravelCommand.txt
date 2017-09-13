@@ -1,0 +1,29 @@
+Laravel Commands
+Run Web Server
+php artisan serve --host $IP --port $PORT		(Start Server)
+https://ide.c9.io/grimeswong/web_application_development_2703ict		(Web preview/link)
+php artisan route:list					(Show route list)
+
+
+1) Migration
+php artisan make:migration create_products_table
+php artisan migrate
+php artisan migrate:rollback		(roll back one step)
+php artisan migrate:reset		    (reset all the migration to the default state)
+php artisan migrate:refresh --seed	(after roll back the migration, then reseed the data)
+
+2) Seeding
+php artisan make:seeder ProductsTableSeeder		(Make a product class table)
+php artisan db:seed
+php artisan db:seed -class=ProductsTableSeeder
+
+3) Create Model
+php artisan make::model Product
+
+Controller (Make routes CRUD)
+php artisan make:controller ProductController --resource
+Route::resource('product', 'ProductController');
+
+Authentication
+php artisan make:auth
+php artisan config:cache
