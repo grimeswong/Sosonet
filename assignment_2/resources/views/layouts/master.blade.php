@@ -29,9 +29,19 @@
                         <!--<li role="presentation"><a href="#">Photos</a></li>-->
                         <li role="presentation"><a href="{{url("documentation")}}">Documentation</a></li>
                         <li role="presentation"><a href="{{url("erdiagram")}}">ER Diagram</a></li>
+                        <form class="input-group navbar-form" style="max-width: 250px" id="search-form" method="post" action="">
+                            <input class="form-control" id="param-main-searchbar" name="param" placeholder="Search Friend..." />
+                            <span class="input-group-btn">
+                            <button type="button" onclick="search()" class="btn btn-default btn-searchbar">
+                                <span class="glyphicon glyphicon-search">
+                                    <span class="sr-only">Search</span>
+                                </span>
+                            </button>
+                            </span>
+                        </form>
                     </ul>
                     <ul class="nav nav-pills navbar-nav navbar-right">
-                         <li role="presentation"><a href="#">Create A User</a></li>
+                         <li role="presentation"><a href="{{url("user")}}">Create A User</a></li>
                          <li role="presentation"><a href="#">Login</a></li>
                          <li role="presentation"><a href="#">Register</a></li>
                     </ul>

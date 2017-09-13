@@ -21,6 +21,9 @@ Route::resource('post','PostController');
 /*** Resource Controller for Comment ***/
 Route::resource('comment','CommentController');
 
+/*** Resource Controller for Comment ***/
+Route::resource('user','UserController');
+
 
 /*** Redirect to post index page ***/
 Route::get('/', function () {
