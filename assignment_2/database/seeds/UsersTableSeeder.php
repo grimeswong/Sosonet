@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'bob@a.org',
             'password' => bcrypt('1234'),
             'fullname' => 'Bob',
-            'DOB' => '1970-1-1',
+            'DOB' => '1970/1/1',
             'image' => 'Nothing to show',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')

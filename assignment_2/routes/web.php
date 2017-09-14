@@ -24,6 +24,8 @@ Route::resource('comment','CommentController');
 /*** Resource Controller for Comment ***/
 Route::resource('user','UserController');
 
+/*** Redirect to the search result page ***/
+Route::get('search', 'UserController@searchresult');
 
 /*** Redirect to post index page ***/
 Route::get('/', function () {
@@ -51,5 +53,9 @@ Route::get('test', function() {
    //Finding users 
    $users = Post::where('user_id', '=', '1')->get()->sortBy('user_id');
    dd($users);
-   
 });
+   
+
+
+
+   

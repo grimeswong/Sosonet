@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Post;
+use App\Comment;
+use Datetime;
 
 class UserController extends Controller
 {
@@ -13,8 +16,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view("users.index");
+    {   
+        $users = User::all();
+        return view("users.index")->withUsers($users);
     }
 
     /**
@@ -24,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view("users.create_form");
     }
 
     /**
@@ -63,7 +67,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $posts = User::find($id)->posts;
+        $commentsCount = Post::withCount('Comments')->get();
+        // dd($commentsCount);
+        $user = User::find($id);
+        $birth_date = new DateTime($user->DOB);
+        // $birth_date = new \DateTime($user->DOB);    //if not put "use DATETIME" on the top
+        $diff = $birth_date->diff(new \DateTime);
+        $age = $diff->y;
+        return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('commentsCount', $commentsCount);
     }
 
     /**
@@ -98,5 +111,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    
+    
+    public function searchresult(Request $request)
+    {   
+        $name = $request->name;
+        $users = User::whereRaw('fullname like ?', array("%$name%"))->get();
+        return view('users.searchresult')->withUsers($users);
     }
 }

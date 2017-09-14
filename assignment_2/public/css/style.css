@@ -90,8 +90,15 @@ input {
 }
 
 
+/*** User ***/
+.panel-heading a {
+    color:white;
+}
 
-
+.panel-heading a:hover {
+    color:white;
+    text-decoration:none;
+}
 
 
 

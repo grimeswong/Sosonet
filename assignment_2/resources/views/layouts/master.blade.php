@@ -25,14 +25,14 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav nav-pills navbar-nav navbar-left">  <!-- nav style = pills, right aligned -->
                         <li role="presentation"><a href="{{url("/")}}">Home</a></li>
-                        <li role="presentation"><a href="#">Search Friends</a></li>
+                        <li role="presentation"><a href="{{url("user")}}">Search Users</a></li>
                         <!--<li role="presentation"><a href="#">Photos</a></li>-->
                         <li role="presentation"><a href="{{url("documentation")}}">Documentation</a></li>
                         <li role="presentation"><a href="{{url("erdiagram")}}">ER Diagram</a></li>
-                        <form class="input-group navbar-form" style="max-width: 250px" id="search-form" method="post" action="">
-                            <input class="form-control" id="param-main-searchbar" name="param" placeholder="Search Friend..." />
+                        <form class="input-group navbar-form" style="max-width: 250px" id="search-form" method="get" action="search">
+                            <input class="form-control" name="name" placeholder="Search Users..." />
                             <span class="input-group-btn">
-                            <button type="button" onclick="search()" class="btn btn-default btn-searchbar">
+                            <button type="submit" class="btn btn-default btn-searchbar">
                                 <span class="glyphicon glyphicon-search">
                                     <span class="sr-only">Search</span>
                                 </span>
@@ -41,7 +41,7 @@
                         </form>
                     </ul>
                     <ul class="nav nav-pills navbar-nav navbar-right">
-                         <li role="presentation"><a href="{{url("user")}}">Create A User</a></li>
+                         <li role="presentation"><a href="{{url("user/create")}}">Create A User</a></li>
                          <li role="presentation"><a href="#">Login</a></li>
                          <li role="presentation"><a href="#">Register</a></li>
                     </ul>

@@ -66,7 +66,10 @@ class CommentController extends Controller
     {   
         $post = Post::find($id);
         $comments = Post::find($id)->comments()->get();
-        return view('comments.index')->withPost($post)->withComments($comments)->with('users', User::all());
+        $user = Post::find($id)->user;
+        // dd($user);
+        return view('comments.index')->withPost($post)->withComments($comments)->with('users', User::all()); // need to get all the user for list the users in the form
+        
     }
 
     /**
