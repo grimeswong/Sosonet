@@ -50,7 +50,7 @@ class CommentController extends Controller
             'user_id' =>'exists:users,id',
             'message'=>'required|max:255|min:1'
         ]);
-        
+        // dd($request);
         $comment = new Comment();
         $comment->post_id = $request->post_id;
         $comment->user_id = $request->user_id;

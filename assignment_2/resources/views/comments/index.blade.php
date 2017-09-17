@@ -15,7 +15,7 @@
                 
                 @if(Auth::check()) <!-- make sure user has logged in to get user name -->
                 <div class="form-group message"><label>Current User: {{Auth::user()->fullname}}</label><br>
-                    <input type="hidden" name="user_id" value="{{$post->user_id}}">
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
                 @endif
                 
@@ -49,7 +49,7 @@
                         <li class="list-group-item clearfix">
                             <p>{{$comment->user->fullname}}</p>
                             <span>{{$comment->message}}</span>
-                             <form method="POST" action="/comment/{{$comment->id}}"> <!-- Delete Button -->
+                            <form method="POST" action="/comment/{{$comment->id}}"> <!-- Delete Button -->
                                 {{csrf_field()}}
                                 {{ method_field('DELETE') }}  <!-- we use the method delete that using the hidden method -->
                             <input type="hidden" name="post_id" value="{{$post->id}}">
