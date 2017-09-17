@@ -16,11 +16,11 @@
                         <span>Age: {{$age}}</span>
                         @if(Auth::check()) <!-- Check the user whether logged in -->
                             @foreach ($friendships as $friendship)
-                                @if($friendship->userfriend) <!-- if user is not current user and not is friend of user yet -->
-                                <form method="post" action="/removeFriend">
-                                    <input type="hidden" name="user_id">
-                                    <input type="hidden" name="friend_user_id">
-                                    <button class="btn btn-success pull-right" type="submit">Remove Friend</button>
+                                @if($friendship->id != Auth::id()) <!-- if user is not current user and not is friend of user yet -->
+                                <form method="post" action="/friend/{{$user->id}}">
+                                    {{csrf_field()}}                                    
+                                    {{ method_field('DELETE') }}  <!-- we use the method delete that using the hidden method -->
+                                    <button class="btn btn-danger pull-right" type="submit">Unfriend</button>
                                 </form>
                             
                                 @elseif($user->id == Auth::id())

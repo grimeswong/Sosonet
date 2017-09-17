@@ -16,6 +16,11 @@
                     <img class="avatar" src= "/{{$friend->image}}" alt="Image's not available"></img>
                     <span>{{$friend->fullname}}</span>
                 </a>
+                <form method="post" action="/friend/{{$friend->id}}">
+                    {{csrf_field()}}
+                    {{ method_field('DELETE') }}  <!-- we use the method delete that using the hidden method -->
+                    <button class="btn btn-danger btn-margin pull-right" type="submit">Unfriend</button>
+                </form>
             </div>
         </div>
         @empty 

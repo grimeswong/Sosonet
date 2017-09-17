@@ -8,6 +8,7 @@ use App\Post;
 use App\Comment;
 use Datetime;
 use \Auth;
+use \DB;
 
 class UserController extends Controller
 {   
@@ -67,14 +68,24 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the user profile page.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $posts = User::find($id)->posts;
+    {   
+        if(Auth::guest()) {
+            // $posts = Post::whereRaw('id = ? and privacy = "public" or privacy = "friends"', array("%$id%"))->orderBy('id','desc')->get();
+            $posts = User::find($id)->posts()->whereRaw('privacy = "public"')->orderBy('id','desc')->get();   // only posts allow guest to see
+        }elseif (Auth::id() != $id) {
+            $posts = User::find($id)->posts()->whereRaw('NOT privacy = "private"')->orderBy('id','desc')->get();
+            // dd($posts);
+        }else{  // the authenticated user browse his own profile
+            $posts = User::find($id)->posts()->get();
+        }
+        
+        
         $commentsCount = Post::withCount('Comments')->get();
         $user = User::find($id);    // may not need this
         $birth_date = new DateTime(User::find($id)->DOB);
@@ -117,7 +128,7 @@ class UserController extends Controller
         $this->validate($request, [
             // post user id validation
             'fullname' =>'required|max:255',
-            'email'=>'required|email|max:255|unique:users',
+            'email'=>'required|email|max:255|',
             // 'password'=>'required|min:4|confirmed',
             'DOB' => 'required|date',
             'image' => 'required|image|max:255' // image

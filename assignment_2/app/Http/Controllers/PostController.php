@@ -24,7 +24,7 @@ class PostController extends Controller
     public function index()
     {   
         if(Auth::check()){
-            $posts = Post::query()->orderBy('id','desc')->get();    //get all the posts by reserve order
+            $posts = Post::whereRaw('privacy = "public" or privacy = "friends"')->orderBy('id','desc')->get();    //get all the posts by reserve order
         }else{
             $posts = Post::whereRaw('privacy = "public"')->orderBy('id','desc')->get(); //get public posts only by reserve order
         }

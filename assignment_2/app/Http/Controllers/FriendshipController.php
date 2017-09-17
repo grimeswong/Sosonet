@@ -21,7 +21,6 @@ class FriendshipController extends Controller
         $userfriend = User::find($id)->userfriend()->get();
         $friendof = User::find($id)->friendof()->get();
         $friendships = $userfriend->merge($friendof);
-        // dd($friendships);
         return view('friends.index')->withFriendships($friendships);
     }
 
@@ -81,13 +80,22 @@ class FriendshipController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the friendship of users.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        // dd($id);
+        $userfriend = User::find($id)->userfriend()->get();
+        $friendof = User::find($id)->friendof()->get();
+        $friendships = $userfriend->merge($friendof);
+        foreach($friendships as $friendship) {
+            if($friendship->id == Auth::id()){
+                // $friendship->delete();   // Got problem when deleting it
+            }
+        }
+        return redirect("/friend");
     }
 }

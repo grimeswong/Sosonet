@@ -66,27 +66,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*** Test Purpose Only ***/
 Route::get('test', function() {
     
-    //Finding posts with user Bob id = 1, 
-//   $posts = User::find(1)->posts;
-//   dd($posts);
-   
-   //Finding users 
-//   $users = Post::where('user_id', '=', '1')->get()->sortBy('user_id');
-//   dd($users);
-   
-        // $userfriend = User::find(1)->userfriend()->get();
-        // $friendof = User::find(1)->friendof()->get();
-        // $friendships = $userfriend->merge($friendof);
-        // // dd($friendships);
-        // foreach($friendships as $friendship) {
-        //     echo($friendship->id);
-        // }
-        $post = POST::find(1);
-        $userimage = $post->user->image;
-        dd($post->user->image);
-        dd($userimage);
-        $user();
-        dd($user);
 });
    
 
