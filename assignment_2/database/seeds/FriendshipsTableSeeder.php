@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CommentsTableSeeder extends Seeder
+class FriendshipsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,122 +11,107 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('comments')->insert([
-            'post_id' => '1',
-            'message' =>'Hello',
-            'user_id' => '2',
+        DB::table('friendships')->insert([
+            'user_id' => '1',   //Bob
+            'friend_user_id' => '2',    //John
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '2',
-            'message' =>'Hello',
-            'user_id' => '6',
+        DB::table('friendships')->insert([
+            'user_id' => '3',   //Tom
+            'friend_user_id' => '1',    //Bob
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '3',
-            'message' =>'Hello',
-            'user_id' => '3',
+        DB::table('friendships')->insert([
+            'user_id' => '4',   //Dave
+            'friend_user_id' => '1',    //Bob
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'Hello',
-            'user_id' => '4',
+        DB::table('friendships')->insert([
+            'user_id' => '4',   //Dave
+            'friend_user_id' => '2',    //John
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '1',
-            'message' =>'Hello',
-            'user_id' => '5',
+        DB::table('friendships')->insert([
+            'user_id' => '4',   //Dave
+            'friend_user_id' => '3',    //Tom
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '2',
-            'message' =>'Hello',
-            'user_id' => '7',
+        DB::table('friendships')->insert([
+            'user_id' => '5',   //Peter
+            'friend_user_id' => '7',    //Ann
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'Hello everyone',
-            'user_id' => '1',
+        DB::table('friendships')->insert([
+            'user_id' => '5',   //Peter
+            'friend_user_id' => '8',    //Sue
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'Thanks',
-            'user_id' => '2',
+        DB::table('friendships')->insert([
+            'user_id' => '6',   //June
+            'friend_user_id' => '4',    //Dave
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'Hello',
-            'user_id' => '3',
+        DB::table('friendships')->insert([
+            'user_id' => '6',   //June
+            'friend_user_id' => '5',    //Peter
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'Just to say hi!!!',
-            'user_id' => '5',
+        DB::table('friendships')->insert([
+            'user_id' => '7',   //Ann
+            'friend_user_id' => '8',    //Sue
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'Someone can tell me how to post?',
-            'user_id' => '6',
+        DB::table('friendships')->insert([
+            'user_id' => '7',   //Ann
+            'friend_user_id' => '9',    //Mary
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'I don\'t really know!!!',
-            'user_id' => '7',
+        DB::table('friendships')->insert([
+            'user_id' => '8',   //Sue
+            'friend_user_id' => '1',    //Bob
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'get used to it',
-            'user_id' => '8',
+        DB::table('friendships')->insert([
+            'user_id' => '8',   //Sue
+            'friend_user_id' => '2',    //John
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'ok champ',
-            'user_id' => '9',
+        DB::table('friendships')->insert([
+            'user_id' => '9',   //Mary
+            'friend_user_id' => '1',    //Bob
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
-        DB::table('comments')->insert([
-            'post_id' => '13',
-            'message' =>'Sorry, I\'m late here!!!',
-            'user_id' => '10',
+        DB::table('friendships')->insert([
+            'user_id' => '9',   //Mary
+            'friend_user_id' => '2',    //John
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);

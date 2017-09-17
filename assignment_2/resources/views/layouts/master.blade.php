@@ -26,10 +26,12 @@
                     <ul class="nav nav-pills navbar-nav navbar-left">  <!-- nav style = pills, right aligned -->
                         <li role="presentation"><a href="{{url("/")}}">Home</a></li>
                         <li role="presentation"><a href="{{url("user")}}">Search Users</a></li>
-                        <!--<li role="presentation"><a href="#">Photos</a></li>-->
+                        @if (Auth::check())
+                            <li role="presentation"><a href="#">Friends</a></li>
+                        @endif
                         <li role="presentation"><a href="{{url("documentation")}}">Documentation</a></li>
                         <li role="presentation"><a href="{{url("erdiagram")}}">ER Diagram</a></li>
-                        <form class="input-group navbar-form" style="max-width: 250px" id="search-form" method="get" action="search">
+                        <form class="input-group navbar-form" style="max-width: 250px" id="search-form" method="get" action="/search">
                             <input class="form-control" name="name" placeholder="Search Users..." />
                             <span class="input-group-btn">
                             <button type="submit" class="btn btn-default btn-searchbar">
@@ -40,10 +42,25 @@
                             </span>
                         </form>
                     </ul>
+                    <!-- right navigation bar -->
                     <ul class="nav nav-pills navbar-nav navbar-right">
-                         <li role="presentation"><a href="{{url("user/create")}}">Create A User</a></li>
-                         <li role="presentation"><a href="#">Login</a></li>
-                         <li role="presentation"><a href="#">Register</a></li>
+                         <!--<li role="presentation"><a href="{{url("user/create")}}">Create A User</a></li>-->
+                        @if (Auth::guest())
+                            <li role="presentation"><a href="{{ route('login') }}">Login</a></li>
+                            <li role="presentation"><a href="{{ route('register') }}">Register</a></li>
+                        @else
+                            <li role="presentation"><a href="/user/{{ Auth::user()->id }}"> Welcome! {{ Auth::user()->fullname }}</a></li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                </form>
+                            </li>
+                         @endif
                     </ul>
                 </div>
             </div> <!-- end navbar container -->

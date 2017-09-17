@@ -15,19 +15,8 @@
                 <div class="name"><h2>Update Post Form</h2></div>
                 
                 <input type="hidden" name="post_id" value="{{$post->id}}">
-                
-                <!--<div class="name"><label>Name: </label><br>-->
-                <!--    @if(count($errors)>0)-->
-                <!--        <input type="text" name="name" value="{{old('name')}}"><span class="alert">{{$errors->first('name')}}</span>-->
-                <!--    @else-->
-                <!--        <input type="text" name="name" value="{{$post->post_user_id}}">-->
-                <!--    @endif-->
-                <!--</div>-->
-                
-                 <div class="form-group message"><label>User Name: </label><br>
-                  <select name="user_id" class="form-control">
-                      <option value="{{$user->id}}" selected>{{$user->fullname}}</option>
-                  </select>
+                <div class="form-group message"><label>User Name {{Auth::user()->fullname}} </label><br>
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
                 
                 <div class="name"><label>Title: </label><br>

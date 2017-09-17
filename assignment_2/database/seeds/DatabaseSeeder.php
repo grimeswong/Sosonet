@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsTableSeeder::class); //create the posts seeder file
         $this->call(CommentsTableSeeder::class); //create the posts seeder file
         $this->call(UsersTableSeeder::class); //create the Users seeder file
+        $this->call(FriendshipsTableSeeder::class); //create the Users seeder file
     }
 }

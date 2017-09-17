@@ -9,6 +9,12 @@ use App\User;
 
 class PostController extends Controller
 {
+    
+    public function __construct() {
+        $this->middleware('auth', ['except' => 'index']);
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +26,9 @@ class PostController extends Controller
         // $comments = Comment::all();
         $commentsCount = Post::withCount('Comments')->get();
         // dd($commentsCount);
-        
-        /***To do  Need to find out how to count comments ***/
-       
-        return view('posts.index')->withPosts($posts)->with('commentsCount', $commentsCount)->with('users', User::all());  // magic method
+        $image = User::find(1)->image;
+        // dd($image);
+        return view('posts.index')->withPosts($posts)->with('commentsCount', $commentsCount)->with('users', User::all())->withImage($image);  // magic method
         // ->withComments($comments)
     }
 
@@ -78,7 +83,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $user = USER::find($post->user_id);
+        $user = User::find($post->user_id);
         return view('/posts.edit_form')->withPost($post)->with('user', $user);
     }
 

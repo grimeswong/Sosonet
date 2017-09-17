@@ -11,25 +11,13 @@
             <form method="post" action="/comment">
                 {{csrf_field()}}
                 <div class="name"><h2>Create Comment Form</h2></div>
-                
                 <input type="hidden" name="post_id" value="{{$post->id}}">
                 
-                <!--<div class="name"><label>Name: </label><br>-->
-                <!--@if(count($errors)>0)-->
-                <!--    <input type="text" name="name" placeholder="Enter your name" value="{{old('name')}}"><span class="alert">{{$errors->first('name')}}</span>-->
-                <!--@else   -->
-                <!--    <input type="text" name="name" placeholder="Enter your name">-->
-                <!--@endif-->
-                <!--</div>-->
-                
-                 <div class="form-group message"><label>User Name: </label><br>
-                  <select name="user_id" class="form-control">
-                      <option selected></option>
-                    @foreach($users as $user) 
-                        <option value="{{$user->id}}">{{$user->fullname}}</option>
-                    @endforeach
-                  </select>
+                @if(Auth::check()) <!-- make sure user has logged in to get user name -->
+                <div class="form-group message"><label>User Name: {{Auth::user()->fullname}}</label><br>
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
+                @endif
                 
                 <div class="message"><label>Message: </label><br>
                 @if(count($errors)>0)
@@ -49,7 +37,7 @@
             <h2>View Comment Page</h2>
             <div class="panel panel-primary">
                 <div class="panel-heading clearfix">
-                    <img class="avatar" src= "/img/people-icon.png" alt="Image is not available"></img>
+                    <img class="avatar" src= "/{{$post->user->image}}" alt="Image is not available"></img>
                     <span class="username">{{$post->user->fullname}}</span>
                     <h4>{{$post->title}}</h4>
                     <p>{{$post->message}}</p>
@@ -65,7 +53,9 @@
                                 {{csrf_field()}}
                                 {{ method_field('DELETE') }}  <!-- we use the method delete that using the hidden method -->
                             <input type="hidden" name="post_id" value="{{$post->id}}">
-                            <button class="btn btn-danger btn-margin pull-right" type="submit">Delete</button>
+                            @if(Auth::id() == $comment->user_id || Auth::id() == $post->user_id)    <!-- allow post or comment creator to delete -->
+                                <button class="btn btn-danger btn-margin pull-right" type="submit">Delete</button>
+                            @endif    
                             </form>
                             <!--<a class="btn btn-danger pull-right" href="{{url("delete_comment/$comment->comment_id")}}">Delete</a>-->
                         </li>
@@ -75,7 +65,8 @@
                 </div>
                 @endforelse
             </div>
+            <div align="center">{{$comments->links()}}</div>
         </div>
     </div>
 
-@endsection('content')s
+@endsection('content')

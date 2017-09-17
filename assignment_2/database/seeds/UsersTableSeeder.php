@@ -16,17 +16,17 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Bob',
             'DOB' => '1970/1/1',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/batman.jpeg',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
         
         DB::table('users')->insert([
-            'email' => 'join@a.org',
+            'email' => 'john@a.org',
             'password' => bcrypt('1234'),
             'fullname' => 'John',
             'DOB' => '1965-12-1',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/peter.jpeg',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Tom',
             'DOB' => '1985-7-15',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/tom.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Dave',
             'DOB' => '1990-8-5',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/people-icon.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Peter',
             'DOB' => '1989-3-4',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/people-icon.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -66,7 +66,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'June',
             'DOB' => '1986-10-1',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/people-icon.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -76,7 +76,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Ann',
             'DOB' => '1995-2-1',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/people-icon.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -86,7 +86,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Sue',
             'DOB' => '1985-9-23',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/people-icon.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -96,7 +96,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Mary',
             'DOB' => '1995-2-1',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/people-icon.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);
@@ -106,7 +106,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('1234'),
             'fullname' => 'Zoe',
             'DOB' => '1987-5-1',
-            'image' => 'Nothing to show',
+            'image' => 'user_img/people-icon.png',
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);

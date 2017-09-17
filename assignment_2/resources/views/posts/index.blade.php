@@ -13,24 +13,12 @@
                 {{csrf_field()}}
                 <div class="name form-group"><h2>Create Post Form</h2></div>
                 
-                <!--<div class="name"><label>Name: </label><br>-->
-                <!--    @if(count($errors)>0)-->
-                <!--        <input type="text" name="name" value="{{old('name')}}"><span class="alert">{{$errors->first('name')}}</span>-->
-                <!--    @else-->
-                <!--        <input type="text" name="name" placeholder="Enter your name">-->
-                <!--    @endif-->
-                <!--</div>-->
-                
-                  <!-- temp user selection -->
-                <div class="form-group message"><label>User Name: </label><br>
-                  <select name="user_id" class="form-control">
-                      <option selected></option>
-                    @foreach($users as $user) 
-                        <option value="{{$user->id}}">{{$user->fullname}}</option>
-                    @endforeach
-                  </select>
+                @if(Auth::check())
+                <div class="name"><label>Current User: {{Auth::user()->fullname}}</label><br>
+                  <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
-                
+                @endif
+
                 <div class="name"><label>Title: </label><br>
                     @if(count($errors)>0)
                         <input type="text" name="title" value="{{old('title')}}"><span class="alert">{{$errors->first('title')}}</span>
@@ -47,10 +35,26 @@
                 </div>
                 <div class="form-group message">
                   <label for="privacy">Privacy</label>
-                  <select name="privacy" class="form-control">
-                    <option value="public" selected>Public</option>
-                    <option value="friends">Friends</option>
-                    <option value="private">Private</option>
+                        <select name="privacy" class="form-control">
+                    @if (count($errors)>0)
+                        @if(old('privacy') == "public")
+                            <option value="public" selected>Public</option>
+                            <option value="friends">Friends</option>
+                            <option value="private">Private</option>
+                        @elseif(old('privacy') == "friends")
+                            <option value="public">Public</option>
+                            <option value="friends" selected>Friends</option>
+                            <option value="private">Private</option>
+                        @else                
+                            <option value="public" selected>Public</option>
+                            <option value="friends">Friends</option>
+                            <option value="private" selected>Private</option>
+                        @endif
+                    @else      
+                            <option value="public" selected>Public</option>
+                            <option value="friends">Friends</option>
+                            <option value="private">Private</option>
+                    @endif
                   </select>
                 </div>
                 <div class="message">
@@ -66,23 +70,23 @@
             @forelse ($posts as $post)
             <div class="panel panel-primary">
                 <div class="panel-heading clearfix">
-                    <img class="avatar" src= "/img/people-icon.png" alt="Image's not available"></img>
-                    <span class="username">{{$post->user->fullname}}</span>
-                    
+                    <img class="avatar" src= "/{{$post->user->image}}" alt="Image's not available"></img>
+                    <a href="user/{{$post->user_id}}"><span class="username">{{$post->user->fullname}}</span></a>
+                    @if(Auth::id() == $post->user_id)
                     <form method="POST" action="/post/{{$post->id}}"> <!-- Delete Button -->
                         {{csrf_field()}}
                         {{ method_field('DELETE') }}  <!-- we use the method delete that using the hidden method -->
                         <button class="btn btn-danger btn-margin pull-right" type="submit">Delete</button>
                     </form>
-                    
                     <a class="btn btn-success btn-margin pull-right" href="{{url("post/$post->id")}}">Edit</a>
+                    @endif
                 </div>
                 
                 <div class="panel-body">
                     <h4>{{$post->title}}</h4>
                     <p>{{$post->message}}</p>
                     <!-- Team show Privacy -->
-                    <p>Privacy Level: {{$post->privacy}}</p>
+                    <p class="pull-left">Privacy Level: {{$post->privacy}}</p>
                     <a class="btn btn-primary pull-right" href="{{url("comment/$post->id")}}">
                         View Comment
                         @foreach ($commentsCount as $commentCount)

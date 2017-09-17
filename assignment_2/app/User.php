@@ -36,4 +36,14 @@ class User extends Authenticatable
     function comments() {
         return $this->hasMany('App\Comment');
     }
+    
+    
+    function userfriend() {
+        return $this->belongsToMany('App\User', 'friendships','user_id', 'friend_user_id')->withPivot('friend_user_id');
+    }
+    
+    
+    function friendof() {
+        return $this->belongsToMany('App\User', 'friendships','friend_user_id', 'user_id')->withPivot('user_id');
+    }
 }

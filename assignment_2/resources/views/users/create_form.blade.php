@@ -40,9 +40,9 @@
             </div>
             <div class="name form-group"><label>DOB</label><br>
                 @if(count($errors)>0)
-                    <input type="text" name="DOB" value="{{old('DOB')}}"><span class="alert">{{$errors->first('DOB')}}</span>
+                    <input type="date" name="DOB" value="{{old('DOB')}}"><span class="alert">{{$errors->first('DOB')}}</span>
                 @else
-                    <input type="text" name="DOB" placeholder="yyyy/mm/dd">
+                    <input type="date" name="DOB" placeholder="yyyy/mm/dd">
                 @endif
             </div>
             <div class="name form-group"><label>Upload Image File</label><br>

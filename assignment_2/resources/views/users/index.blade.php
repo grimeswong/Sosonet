@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <h2>Search for users</h2>
           <form class="input-group navbar-form" style="max-width: 250px" id="search-form" method=get action="search">
             <input class="form-control" name="name" placeholder="Search Friend..." />

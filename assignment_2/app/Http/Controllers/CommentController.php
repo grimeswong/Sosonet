@@ -9,6 +9,13 @@ use App\User;
 
 class CommentController extends Controller
 {
+    /*** Allow guest user navigate index page only ***/
+    public function __construct() {
+        $this->middleware('auth', ['except' => ['index','show']]);
+        return view('posts.index');
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -65,9 +72,11 @@ class CommentController extends Controller
     public function show($id)
     {   
         $post = Post::find($id);
-        $comments = Post::find($id)->comments()->get();
+        // $comments = Post::find($id)->comments()->get();
+        $comments = Post::find($id)->comments()->paginate(6);
+        // dd($comments);
         $user = Post::find($id)->user;
-        // dd($user);
+        // dd($post->user->image);
         return view('comments.index')->withPost($post)->withComments($comments)->with('users', User::all()); // need to get all the user for list the users in the form
         
     }

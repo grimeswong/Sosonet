@@ -9,7 +9,13 @@ use App\Comment;
 use Datetime;
 
 class UserController extends Controller
-{
+{   
+    
+    /*** Allow guest user navigate index page only ***/
+    public function __construct() {
+        $this->middleware('auth', ['except' => ['index', 'searchresult', 'show']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -47,15 +53,16 @@ class UserController extends Controller
             'email'=>'required|email|max:255|unique:users',
             'password'=>'required|min:4|confirmed',
             'DOB' => 'required|date',
-            'image' => 'required|max:255' // image
+            'image' => 'required|image|max:255' // image
         ]);
         
+        $image_store = request()->file('image')->store('user_img','public');
         $user = new User();
         $user->fullname = $request->fullname;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->DOB = $request->DOB;
-        $user->image = $request->image;
+        $user->image = $image_store;
         $user->save();
     }
 
@@ -67,16 +74,23 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
         $posts = User::find($id)->posts;
         $commentsCount = Post::withCount('Comments')->get();
         // dd($commentsCount);
-        $user = User::find($id);
-        $birth_date = new DateTime($user->DOB);
+        $user = User::find($id);    // may not need this
+        $birth_date = new DateTime(User::find($id)->DOB);
         // $birth_date = new \DateTime($user->DOB);    //if not put "use DATETIME" on the top
-        $diff = $birth_date->diff(new \DateTime);
+        $diff = $birth_date->diff(new DateTime);
         $age = $diff->y;
-        return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('commentsCount', $commentsCount);
+        // dd($user);
+        // Must use $user in case some user may not have any post
+        
+        /*** Check friendship ***/
+        $userfriend = User::find($id)->userfriend()->get();
+        $friendof = User::find($id)->friendof()->get();
+        $friendships = $userfriend->merge($friendof);
+        // dd($friendships);
+        return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('commentsCount', $commentsCount)->with('friendships', $friendships);
     }
 
     /**
@@ -120,5 +134,17 @@ class UserController extends Controller
         $name = $request->name;
         $users = User::whereRaw('fullname like ?', array("%$name%"))->get();
         return view('users.searchresult')->withUsers($users);
+    }
+    
+    
+    public function addFriend(Request $request) 
+    {
+        dd($request);
+    }
+    
+    
+    public function removeFriend(Request $request) 
+    {
+        dd($request);
     }
 }
