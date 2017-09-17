@@ -14,8 +14,8 @@
                 <input type="hidden" name="post_id" value="{{$post->id}}">
                 
                 @if(Auth::check()) <!-- make sure user has logged in to get user name -->
-                <div class="form-group message"><label>User Name: {{Auth::user()->fullname}}</label><br>
-                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                <div class="form-group message"><label>Current User: {{Auth::user()->fullname}}</label><br>
+                    <input type="hidden" name="user_id" value="{{$post->user_id}}">
                 </div>
                 @endif
                 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;           
 use App\Comment;
 use App\User;
+use \Auth;
 
 class PostController extends Controller
 {
@@ -16,20 +17,22 @@ class PostController extends Controller
     
     
     /**
-     * Display a listing of the resource.
+     * Display a listing posts.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $posts = Post::query()->orderBy('id','desc')->get();    //get all the posts by reserve order
+    {   
+        if(Auth::check()){
+            $posts = Post::query()->orderBy('id','desc')->get();    //get all the posts by reserve order
+        }else{
+            $posts = Post::whereRaw('privacy = "public"')->orderBy('id','desc')->get(); //get public posts only by reserve order
+        }
+        // dd($publicposts);
         // $comments = Comment::all();
         $commentsCount = Post::withCount('Comments')->get();
         // dd($commentsCount);
-        $image = User::find(1)->image;
-        // dd($image);
-        return view('posts.index')->withPosts($posts)->with('commentsCount', $commentsCount)->with('users', User::all())->withImage($image);  // magic method
-        // ->withComments($comments)
+        return view('posts.index')->withPosts($posts)->with('commentsCount', $commentsCount);
     }
 
     /**
@@ -43,7 +46,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new post.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -82,24 +85,24 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        $user = User::find($post->user_id);
-        return view('/posts.edit_form')->withPost($post)->with('user', $user);
+       //
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for post editing.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $user = User::find($post->user_id);
+        return view('/posts.edit_form')->withPost($post)->with('user', $user);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the post in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -127,7 +130,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the post and its comments from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -37,7 +37,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new comment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -46,7 +46,6 @@ class CommentController extends Controller
     {
              /** Input validation **/
         $this->validate($request, [
-            // 'name' =>'required|max:255|min:1',
             /* check existing user id */
             'user_id' =>'exists:users,id',
             'message'=>'required|max:255|min:1'
@@ -59,8 +58,8 @@ class CommentController extends Controller
         $comment->save();
         
         $post = Post::find($request->post_id);
-        $comments = Post::find($request->post_id)->comments()->get();
-        return view('comments.index')->withPost($post)->withComments($comments)->with('users', User::all());
+        $comments = Post::find($request->post_id)->comments()->paginate(6);
+        return redirect("/comment/$post->id")->withPost($post)->withComments($comments)->with('users', User::all());
     }
 
     /**
@@ -72,7 +71,7 @@ class CommentController extends Controller
     public function show($id)
     {   
         $post = Post::find($id);
-        // $comments = Post::find($id)->comments()->get();
+        // dd($post);
         $comments = Post::find($id)->comments()->paginate(6);
         // dd($comments);
         $user = Post::find($id)->user;
@@ -105,7 +104,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the comment from storage and reload the updated comments for this post.
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -117,9 +116,9 @@ class CommentController extends Controller
         $comment->delete();
         
         $post = Post::find($request->post_id);
-        $comments = Post::find($request->post_id)->comments()->get();
+        $comments = Post::find($request->post_id)->comments()->paginate(6);
         if($comment) {
-            return view('comments.index')->withPost($post)->withComments($comments)->with('users', User::all());
+            return redirect("/comment/$post->id")->withPost($post)->withComments($comments)->with('users', User::all());
         } else {
             die("Error for deleting a comment!!!");
         }

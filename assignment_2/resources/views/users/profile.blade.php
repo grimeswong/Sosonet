@@ -16,7 +16,7 @@
                         <span>Age: {{$age}}</span>
                         @if(Auth::check()) <!-- Check the user whether logged in -->
                             @foreach ($friendships as $friendship)
-                                @if($friendship->id == Auth::id()) <!-- if user is not current user and not is friend of user yet -->
+                                @if($friendship->userfriend) <!-- if user is not current user and not is friend of user yet -->
                                 <form method="post" action="/removeFriend">
                                     <input type="hidden" name="user_id">
                                     <input type="hidden" name="friend_user_id">

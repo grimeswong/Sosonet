@@ -13,7 +13,7 @@
                 {{csrf_field()}}
                 <div class="name form-group"><h2>Create Post Form</h2></div>
                 
-                @if(Auth::check())
+                @if(Auth::check()) <!-- make sure user has logged in to get user name -->
                 <div class="name"><label>Current User: {{Auth::user()->fullname}}</label><br>
                   <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
@@ -78,7 +78,7 @@
                         {{ method_field('DELETE') }}  <!-- we use the method delete that using the hidden method -->
                         <button class="btn btn-danger btn-margin pull-right" type="submit">Delete</button>
                     </form>
-                    <a class="btn btn-success btn-margin pull-right" href="{{url("post/$post->id")}}">Edit</a>
+                    <a class="btn btn-success btn-margin pull-right" href="post/{{$post->id}}/edit">Edit</a>
                     @endif
                 </div>
                 

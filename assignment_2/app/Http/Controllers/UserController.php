@@ -87,7 +87,7 @@ class UserController extends Controller
         $userfriend = User::find($id)->userfriend()->get();
         $friendof = User::find($id)->friendof()->get();
         $friendships = $userfriend->merge($friendof);
-        // dd($friendships);
+        
         return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('commentsCount', $commentsCount)->with('friendships', $friendships);
     }
 
@@ -117,7 +117,7 @@ class UserController extends Controller
         $this->validate($request, [
             // post user id validation
             'fullname' =>'required|max:255',
-            'email'=>'required|email|max:255',
+            'email'=>'required|email|max:255|unique:users',
             // 'password'=>'required|min:4|confirmed',
             'DOB' => 'required|date',
             'image' => 'required|image|max:255' // image
