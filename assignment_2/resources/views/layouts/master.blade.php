@@ -27,7 +27,7 @@
                         <li role="presentation"><a href="{{url("/")}}">Home</a></li>
                         <li role="presentation"><a href="{{url("user")}}">Search Users</a></li>
                         @if (Auth::check())
-                            <li role="presentation"><a href="#">Friends</a></li>
+                            <li role="presentation"><a href="{{url("friend")}}">Friends</a></li>
                         @endif
                         <li role="presentation"><a href="{{url("documentation")}}">Documentation</a></li>
                         <li role="presentation"><a href="{{url("erdiagram")}}">ER Diagram</a></li>

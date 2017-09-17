@@ -20,7 +20,7 @@ class FriendshipsTableSeeder extends Seeder
         
         DB::table('friendships')->insert([
             'user_id' => '3',   //Tom
-            'friend_user_id' => '1',    //Bob
+            'friend_user_id' => '5',    //Peter
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => \DB::raw('CURRENT_TIMESTAMP')
         ]);

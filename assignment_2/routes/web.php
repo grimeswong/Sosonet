@@ -24,6 +24,9 @@ Route::resource('comment','CommentController');
 /*** Resource Controller for User ***/
 Route::resource('user','UserController');
 
+/*** Resource Controller for Friend ***/
+Route::resource('friend','FriendshipController');
+
 /*** Redirect to the search result page ***/
 Route::get('search', 'UserController@searchresult');
 

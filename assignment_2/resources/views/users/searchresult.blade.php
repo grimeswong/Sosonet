@@ -20,7 +20,7 @@
         </form>
     </div>
     
-     <!-- User Listing -->
+    <!-- User Listing -->
     <div class="col-sm-8">
      <!--<h2>Search Result</h2>-->
         
