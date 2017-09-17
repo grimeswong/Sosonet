@@ -16,22 +16,26 @@
                         <span>Age: {{$age}}</span>
                         @if(Auth::check()) <!-- Check the user whether logged in -->
                             @foreach ($friendships as $friendship)
-                                @if($friendship->id != Auth::id()) <!-- if user is not current user and not is friend of user yet -->
+                            <!--<h2>Friendship id{{$friendship->id}} and auth id{{Auth::id()}} and user id {{$user->id}}</h2>-->
+                            
+                                @if($friendship->id == Auth::id()) <!-- if user is not current user and not is friend of user yet -->
                                 <form method="post" action="/friend/{{$user->id}}">
                                     {{csrf_field()}}                                    
                                     {{ method_field('DELETE') }}  <!-- we use the method delete that using the hidden method -->
                                     <button class="btn btn-danger pull-right" type="submit">Unfriend</button>
                                 </form>
-                            
-                                @elseif($user->id == Auth::id())
                                 
-                                @elseif($friendship->id != Auth::id())
-                                <form method="post" action="/addFriend">
-                                    <input type="hidden" name="user_id">
-                                    <input type="hidden" name="friend_user_id">
-                                    <button class="btn btn-success pull-right" type="submit">Add Friend</button>
-                                </form>
+                                @elseif($friendship->id != $user->id && $user->id != Auth::id())
+                                <!--<form method="post" action="/addFriend">-->
+                                <!--    <input type="hidden" name="user_id">-->
+                                <!--    <input type="hidden" name="friend_user_id">-->
+                                <!--    <button class="btn btn-success pull-right" type="submit">Add Friend</button>-->
+                                <!--</form>-->
+                                
+                                @elseif($user->id != Auth::id())    <!-- user browse his own profile
+                                    <!-- do nothing -->
                                 @else
+                             
                                 @endif
                             @endforeach    
                         @endif

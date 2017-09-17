@@ -19,7 +19,7 @@ class UserController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * Display a listing of users.
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,7 +30,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +40,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new user resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -103,7 +103,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the user account.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -116,7 +116,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the user details in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -158,7 +158,12 @@ class UserController extends Controller
     }
     
     
-    
+    /**
+     * display the searching result of users
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function searchresult(Request $request)
     {   
         $name = $request->name;
@@ -167,14 +172,14 @@ class UserController extends Controller
     }
     
     
-    public function addFriend(Request $request) 
-    {
-        dd($request);
-    }
+    // public function addFriend(Request $request) 
+    // {
+    //     dd($request);
+    // }
     
     
-    public function removeFriend(Request $request) 
-    {
-        dd($request);
-    }
+    // public function removeFriend(Request $request) 
+    // {
+    //     dd($request);
+    // }
 }
