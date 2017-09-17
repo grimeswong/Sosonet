@@ -1,12 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-    Home Page
+    User Register Page
 @endsection
 
 @section('content')
 <div class="row">
     <div class="col-sm-offset-3 col-sm-6 form-border">
+        <h2>User Register Page</h2>
         <form method="post" action="/user">
             {{csrf_field()}}
             <div class="name form-group"><h2>Create User Form</h2></div>

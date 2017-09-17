@@ -7,6 +7,7 @@ use App\User;
 use App\Post;
 use App\Comment;
 use Datetime;
+use \Auth;
 
 class UserController extends Controller
 {   
@@ -45,9 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-          /** Input validation **/
+        /** Input validation **/
         $this->validate($request, [
-            // 'name' =>'required|max:255|min:1',
             // post user id validation
             'fullname' =>'required|max:255',
             'email'=>'required|email|max:255|unique:users',
@@ -76,13 +76,11 @@ class UserController extends Controller
     {
         $posts = User::find($id)->posts;
         $commentsCount = Post::withCount('Comments')->get();
-        // dd($commentsCount);
         $user = User::find($id);    // may not need this
         $birth_date = new DateTime(User::find($id)->DOB);
         // $birth_date = new \DateTime($user->DOB);    //if not put "use DATETIME" on the top
         $diff = $birth_date->diff(new DateTime);
         $age = $diff->y;
-        // dd($user);
         // Must use $user in case some user may not have any post
         
         /*** Check friendship ***/
@@ -100,8 +98,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $user = Auth::user()->fullname;
+        $date = new DateTime(Auth::user()->DOB);
+        return view('users.edit_form')->withUser($user)->withDate($date);
     }
 
     /**
@@ -113,7 +113,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         /** Input validation **/
+        $this->validate($request, [
+            // post user id validation
+            'fullname' =>'required|max:255',
+            'email'=>'required|email|max:255',
+            // 'password'=>'required|min:4|confirmed',
+            'DOB' => 'required|date',
+            'image' => 'required|image|max:255' // image
+        ]);
+        
+        $image_store = request()->file('image')->store('user_img','public');
+        $user = User::find($id);
+        $user->fullname = $request->fullname;
+        $user->email = $request->email;
+        // $user->password = bcrypt($request->password);
+        $user->DOB = $request->DOB;
+        $user->image = $image_store;
+        $user->save();
+        
+        return redirect('/');
     }
 
     /**

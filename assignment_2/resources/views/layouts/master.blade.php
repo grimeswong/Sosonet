@@ -49,7 +49,7 @@
                             <li role="presentation"><a href="{{ route('login') }}">Login</a></li>
                             <li role="presentation"><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li role="presentation"><a href="/user/{{ Auth::user()->id }}"> Welcome! {{ Auth::user()->fullname }}</a></li>
+                            <li role="presentation"><a href="/user/{{ Auth::user()->id}}/edit"> Welcome! {{ Auth::user()->fullname }}</a></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

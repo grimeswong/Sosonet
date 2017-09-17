@@ -81,7 +81,6 @@ Route::get('test', function() {
         // foreach($friendships as $friendship) {
         //     echo($friendship->id);
         // }
-        
         $post = POST::find(1);
         $userimage = $post->user->image;
         dd($post->user->image);
