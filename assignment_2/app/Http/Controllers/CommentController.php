@@ -71,11 +71,8 @@ class CommentController extends Controller
     public function show($id)
     {   
         $post = Post::find($id);
-        // dd($post);
         $comments = Post::find($id)->comments()->paginate(6);
-        // dd($comments);
-        $user = Post::find($id)->user;
-        // dd($post->user->image);
+            // $ = Comments::find($post->id); find the way to find users (shortlisted)
         return view('comments.index')->withPost($post)->withComments($comments)->with('users', User::all()); // need to get all the user for list the users in the form
         
     }

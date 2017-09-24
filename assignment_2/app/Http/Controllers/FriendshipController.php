@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use \Auth;
+use Datetime;
 
 
 class FriendshipController extends Controller
@@ -42,13 +43,11 @@ class FriendshipController extends Controller
      */
     public function store(Request $request)
     {
-                
         $user = Auth::user();
-        $friend = User::find($request->id);
-        
+        $friend = User::find($request->user_id);
+        // dd($request->user_id);
         $user->userfriend()->attach($friend->id);
-        $user->friendof()->attach($friend->id);
-        
+        $user->userfriend()->attach($friend->id, array('created_at'=> new Datetime()));
         return redirect("/friend");
     }
 

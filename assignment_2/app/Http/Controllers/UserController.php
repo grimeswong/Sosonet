@@ -85,21 +85,35 @@ class UserController extends Controller
             $posts = User::find($id)->posts()->orderBy('id','desc')->get();
         }
         
-        $user = User::find($id);    // may not need this
+        $user = User::find($id);    // Must use $user in case some user may not have any post
         
         /*** Calculate the user age ***/
         $birth_date = new DateTime(User::find($id)->DOB);
         // $birth_date = new \DateTime($user->DOB);    //if not put "use DATETIME" on the top
         $diff = $birth_date->diff(new DateTime);
-        $age = $diff->y;
-        // Must use $user in case some user may not have any post
+        $age = $diff->y;    // Get difference of year only
+        
         
         /*** Check friendship ***/
+        $isFriend = false;
         $userfriend = User::find($id)->userfriend()->get();
         $friendof = User::find($id)->friendof()->get();
         $friendships = $userfriend->merge($friendof);
         
-        return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('friendships', $friendships);
+        foreach(Auth::user()->userfriend as $friend) {
+            if($friend->id == $id) {
+                $isFriend = true;        
+            }
+        }
+        
+        foreach(User::find($id)->userfriend as $friend) {
+            if($friend->id == Auth::id()) {
+                $isFriend = true;        
+            }
+        }
+        
+        return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('isFriend', $isFriend);
+        // ->with('friendships', $friendships);
     }
 
     /**
@@ -171,15 +185,4 @@ class UserController extends Controller
         return view('users.searchresult')->withUsers($users);
     }
     
-    
-    // public function addFriend(Request $request) 
-    // {
-    //     dd($request);
-    // }
-    
-    
-    // public function removeFriend(Request $request) 
-    // {
-    //     dd($request);
-    // }
 }
