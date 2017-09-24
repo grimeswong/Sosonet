@@ -27,22 +27,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    
+    // Get the user's posts
     function posts() {
         return $this->hasMany('App\Post');
     }
     
-    
+    // Get the user's comments
     function comments() {
         return $this->hasMany('App\Comment');
     }
     
-    
+    // Get the user's friends
     function userfriend() {
         return $this->belongsToMany('App\User', 'friendships','user_id', 'friend_user_id')->withPivot('friend_user_id');
     }
     
-    
+    // Get the friends of user
     function friendof() {
         return $this->belongsToMany('App\User', 'friendships','friend_user_id', 'user_id')->withPivot('user_id');
     }

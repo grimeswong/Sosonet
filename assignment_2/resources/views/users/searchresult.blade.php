@@ -6,23 +6,10 @@
 
 @section('content')
 <div class="row">
-     <div class="col-sm-4">
-        <h2>Search for users</h2>
-          <form class="input-group navbar-form" style="max-width: 250px" id="search-form" method=get action="search">
-            <input class="form-control" name="name" placeholder="Search Friend..." />
-            <span class="input-group-btn">
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search">
-                    <span class="sr-only">Search</span>
-                </span>
-            </button>
-            </span>
-        </form>
-    </div>
     
     <!-- User Listing -->
-    <div class="col-sm-8">
-     <!--<h2>Search Result</h2>-->
+    <div class="col-sm-offset-2 col-sm-8">
+     <h2>Search Result Page</h2>
         
         @forelse ($users as $user)
         <div class="panel panel-primary">
@@ -32,9 +19,6 @@
                     <span>{{$user->fullname}}</span>
                 </a>
             </div>
-            <!--<div class="panel-body">-->
-                
-            <!--</div>-->
         </div>
         @empty 
             <h3 class="error-middle">Search Result: No user found</h3>

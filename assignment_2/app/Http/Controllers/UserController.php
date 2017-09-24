@@ -70,10 +70,10 @@ class UserController extends Controller
     /**
      * Display the user profile page.
      *
-     * @param  int  $id
+     * @param  int  $id (User id)
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id)   //param: user id
     {   
         if(Auth::guest()) {
             // $posts = Post::whereRaw('id = ? and privacy = "public" or privacy = "friends"', array("%$id%"))->orderBy('id','desc')->get();
@@ -82,12 +82,12 @@ class UserController extends Controller
             $posts = User::find($id)->posts()->whereRaw('NOT privacy = "private"')->orderBy('id','desc')->get();
             // dd($posts);
         }else{  // the authenticated user browse his own profile
-            $posts = User::find($id)->posts()->get();
+            $posts = User::find($id)->posts()->orderBy('id','desc')->get();
         }
         
-        
-        $commentsCount = Post::withCount('Comments')->get();
         $user = User::find($id);    // may not need this
+        
+        /*** Calculate the user age ***/
         $birth_date = new DateTime(User::find($id)->DOB);
         // $birth_date = new \DateTime($user->DOB);    //if not put "use DATETIME" on the top
         $diff = $birth_date->diff(new DateTime);
@@ -99,7 +99,7 @@ class UserController extends Controller
         $friendof = User::find($id)->friendof()->get();
         $friendships = $userfriend->merge($friendof);
         
-        return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('commentsCount', $commentsCount)->with('friendships', $friendships);
+        return view('users.profile')->withUser($user)->withAge($age)->withPosts($posts)->with('friendships', $friendships);
     }
 
     /**

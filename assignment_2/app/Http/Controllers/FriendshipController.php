@@ -42,7 +42,14 @@ class FriendshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                
+        $user = Auth::user();
+        $friend = User::find($request->id);
+        
+        $user->userfriend()->attach($friend->id);
+        $user->friendof()->attach($friend->id);
+        
+        return redirect("/friend");
     }
 
     /**
@@ -82,20 +89,20 @@ class FriendshipController extends Controller
     /**
      * Remove the friendship of users.
      *
-     * @param  int  $id
+     * @param  int  $id (user id)
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {   
-        // dd($id);
-        $userfriend = User::find($id)->userfriend()->get();
-        $friendof = User::find($id)->friendof()->get();
-        $friendships = $userfriend->merge($friendof);
-        foreach($friendships as $friendship) {
-            if($friendship->id == Auth::id()){
-                // $friendship->delete();   // Got problem when deleting it
-            }
-        }
+        
+        $user = Auth::user();
+        $friend = User::find($id);
+        
+        $user->userfriend()->detach($friend->id);       // Remove friend from user' list (user's friend)
+        
+        // $friend->userfriend()->detach($user->id);    // This is equivalent with below
+        $user->friendof()->detach($friend->id);         // Remove user from friend's list (friend's list)
+        
         return redirect("/friend");
     }
 }

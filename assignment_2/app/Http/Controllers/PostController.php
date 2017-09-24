@@ -25,14 +25,13 @@ class PostController extends Controller
     {   
         if(Auth::check()){
             $posts = Post::whereRaw('privacy = "public" or privacy = "friends"')->orderBy('id','desc')->get();    //get all the posts by reserve order
+
         }else{
             $posts = Post::whereRaw('privacy = "public"')->orderBy('id','desc')->get(); //get public posts only by reserve order
         }
-        // dd($publicposts);
-        // $comments = Comment::all();
-        $commentsCount = Post::withCount('Comments')->get();
-        // dd($commentsCount);
-        return view('posts.index')->withPosts($posts)->with('commentsCount', $commentsCount);
+        
+        //posts's comments can be access by looping posts that post->comment()
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -91,14 +90,13 @@ class PostController extends Controller
     /**
      * Show the form for post editing.
      *
-     * @param  int  $id
+     * @param  int  $id (post id)
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $post = Post::find($id);
-        $user = User::find($post->user_id);
-        return view('/posts.edit_form')->withPost($post)->with('user', $user);
+        return view('/posts.edit_form')->withPost($post);
     }
 
     /**
@@ -112,8 +110,6 @@ class PostController extends Controller
     {
           /** Input validation **/
         $this->validate($request, [
-            // 'name' =>'required|max:255|min:1',
-            // post user id validation
             'user_id' =>'exists:users,id',
             'title'=>'required|max:255|min:1',
             'message'=>'required|max:255|min:1',
@@ -139,9 +135,8 @@ class PostController extends Controller
     {
         /* Delete all the post and its comments */
         $post = Post::find($id);
-        $comments = Post::find($id)->comments()->get();
-        
-        foreach($comments as $comment) {    // Delete all the comments related to this post
+
+        foreach($post->comments as $comment) {    // Delete all the comments related to this post
             $comment->delete();
         }
         $post->delete();                    // Delete post itself

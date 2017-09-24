@@ -14,8 +14,10 @@
                 <div class="name form-group"><h2>Create Post Form</h2></div>
                 
                 @if(Auth::check()) <!-- make sure user has logged in to get user name -->
-                <div class="name"><label>Current User: {{Auth::user()->fullname}}</label><br>
-                  <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                <div class="name">
+                    <img class="avatar" src= "/{{Auth::user()->image}}" alt="Image's not available"></img>
+                    <label>Current User: {{Auth::user()->fullname}}</label>
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
                 @endif
 
@@ -70,8 +72,10 @@
             @forelse ($posts as $post)
             <div class="panel panel-primary">
                 <div class="panel-heading clearfix">
-                    <img class="avatar" src= "/{{$post->user->image}}" alt="Image's not available"></img>
-                    <a href="user/{{$post->user_id}}"><span class="username">{{$post->user->fullname}}</span></a>
+                    <a href="/user/{{$post->user_id}}">
+                        <img class="avatar" src= "/{{$post->user->image}}" alt="Image's not available"></img>
+                        <span class="username">{{$post->user->fullname}}</span>
+                    </a>
                     @if(Auth::id() == $post->user_id)
                     <form method="POST" action="/post/{{$post->id}}"> <!-- Delete Button -->
                         {{csrf_field()}}
@@ -89,12 +93,7 @@
                     <p class="pull-left">Privacy Level: {{$post->privacy}}</p>
                     <a class="btn btn-primary pull-right" href="{{url("comment/$post->id")}}">
                         View Comment
-                        @foreach ($commentsCount as $commentCount)
-                               @if($commentCount->id == $post->id)
-                                <span class="badge">{{$commentCount->comments_count}}</span>
-                            @endif
-                            
-                        @endforeach
+                        <span class="badge">{{count($post->comments)}}</span>
                     </a>
                 </div>
                 

@@ -15,7 +15,9 @@
                 <div class="name"><h2>Update Post Form</h2></div>
                 
                 <input type="hidden" name="post_id" value="{{$post->id}}">
-                <div class="form-group message"><label>User Name {{Auth::user()->fullname}} </label><br>
+                <div class="form-group message">
+                    <img class="avatar" src= "/{{Auth::user()->image}}" alt="Image's not available"></img>
+                    <label>Current User: {{Auth::user()->fullname}} </label>
                     <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
                 
