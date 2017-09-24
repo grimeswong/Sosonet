@@ -25,7 +25,6 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav nav-pills navbar-nav navbar-left">  <!-- nav style = pills, right aligned -->
                         <li role="presentation"><a href="{{url("/")}}">Home</a></li>
-                        <li role="presentation"><a href="{{url("user")}}">Search Users</a></li>
                         @if (Auth::check())
                             <li role="presentation"><a href="{{url("friend")}}">Friends</a></li>
                         @endif
