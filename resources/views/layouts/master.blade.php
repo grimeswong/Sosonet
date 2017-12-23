@@ -12,7 +12,7 @@
 
     <body>
         <!-- navigation bar -->
-        <nav class="navbar navbar-inverse"> <!-- inverse=black theme, fixed-top=nav fix on top -->
+        <nav class="navbar navbar-custom"> <!-- inverse=black theme, fixed-top=nav fix on top -->
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <!-- collapse button -->
