@@ -100,6 +100,10 @@ input {
     text-decoration:none;
 }
 
+/*** Documentation ***/
+.user-samples {
+  padding: 10px 0px;
+}
 
 /*** Custom Navbar color ***/
 .navbar-custom {
