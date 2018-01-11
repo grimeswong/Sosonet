@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-sm-offset-2 col-sm-8">
+        <div class="col-md-offset-2 col-md-8 col-sm-12">
             <h3>The below requirements are implemented</h3>
             <p>. Implement the functionalities from Assignment 1 to use migrations, seeders, model, contollers, and the Validator class</p>
             <p>. Users of the website can search for other users without being logged in.</p>
@@ -33,12 +33,12 @@
             <p>. The profile page of a user should indicate whether they are a friend. If they are a friend then there should be an option to unfriend them</p>
             <p>. Privacy Levels are not fully applied</p>
             <p>. Cannot remove a user</p>
-        
+
             <h3>Extra information for implementation</h3>
             <p>1. Documentation and ER diagram documented as web pages</p>
             <p>2. Use bootstrap panel for posts, badge for number of comments</p>
             <p>3. Use nav search bar for search users</p>
-            
+
         </div>
     </div>
 @endsection('content')
