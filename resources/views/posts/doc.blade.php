@@ -9,15 +9,15 @@
       <div class="col-md-offset-1 col-md-3 col-sm-12">
         <h3>User samples</h3>
         <div class="user-samples">
-          <p>User1: Bob@a.org</p>
+          <p>User1: sue@a.org</p>
           <p>Password: 1234</p>
         </div>
         <div class="user-samples">
-          <p>User2: John@a.org</p>
+          <p>User2: mary@a.org</p>
           <p>Password: 1234</p>
         </div>
         <div class="user-samples">
-          <p>User3: Tom@a.org</p>
+          <p>User3: dave@a.org</p>
           <p>Password: 1234</p>
         </div>
       </div>
